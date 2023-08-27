@@ -1,0 +1,292 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    color:  white;
+}
+
+body{
+    height: 150vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image:url("https://source.unsplash.com/1600x900/?landscape");
+}
+
+
+/* responsive */
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+  }
+  .mainbox, .mapa {
+    width: 360px;
+  }
+  .mapa{
+    margin-left: -3em;
+  }
+}
+
+
+/* mainbox */
+.mainbox {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #000000;
+  opacity: 0.8;
+  border-radius: 25px;
+  padding: 25px;
+  max-width: 500px;
+  align-items: center;
+}
+
+.search-button{
+   /* Reset Select */
+  appearance: none;
+  font-size: 1em;
+  border: none;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+  /* Personalize */
+  border-radius: 5%;
+  background-color: #c2c2c27a;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 3em;
+  margin-bottom: 1em;
+  padding: 0 1em;
+  display: inline-flex; 
+}
+
+
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 10px red;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: #7c7c7c2b;
+  background-image: none;
+  cursor: pointer;
+}
+
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+
+/* Custom Select wrapper */
+.select {
+  position: relative;
+  display:flex;
+  width: 20em;
+  height: 3em;
+  border-radius: .25em;
+  overflow: hidden;
+  margin-bottom: 1em ;
+}
+
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #7c7c7c2b;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+
+
+option{
+  background-color: #000000;
+
+}
+
+.img-search{
+  max-width: 30px;
+  margin-left: 0.5em;
+}
+
+.medbox{
+  margin-top: 2em;
+}
+
+.city{
+  color: rgb(255, 255, 255);
+  font-size: 1.7em;
+  font-weight: 300;
+}
+
+.temp{
+  font-size: 2em;
+  margin-top: 0.5em;
+}
+
+.smallbox{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-top: 1em;
+  margin-left: -0.5em;
+  font-size: 1em;
+}
+
+.mensage{
+  text-transform: capitalize;
+}
+
+.humidity{
+  margin-top: 1em;
+  font-size: 1em;
+}
+
+.sunset, .sunrise {
+  margin-top: 0.3em;
+}
+
+/*map*/
+
+.mapa {
+  flex: 1; 
+  padding: 20px;
+  box-sizing: border-box;
+
+}
+
+#map {
+  display: none;
+}
+
+#map .state {
+  cursor: pointer;
+}
+
+#map .state .shape {
+  cursor: pointer;
+  -width: 0;
+}
+
+#map .state .label_icon_state {
+  fill: #fff;
+  font-family: Arial;
+  font-size: 11px;
+  line-height: 12px;
+  font-weight: normal;
+}
+
+#map .state .label_state {
+  display: none;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: bold;
+  background-color: white;
+}
+
+#map .state:hover .label_state,
+#map .state.hover .label_state {
+  display: block;
+}
+
+#map .model-green .state .shape {
+  fill: #000000;
+}
+
+#map .model-green .state .icon_state {
+  fill: #333333;
+}
+
+#map .model-green .state .label_icon_state {
+  fill: #fff;
+}
+
+#map .model-green .state .label_state {
+  fill: rgb(0, 0, 0);
+  padding: 10px;
+}
+
+#map .model-green .state:hover .shape,
+#map .model-green .state.hover .shape {
+  fill: #333333;
+}
+
+#map .model-green .state:hover .icon_state,
+#map .model-green .state.hover .icon_state {
+  fill: #002344;
+}
+
+#map .model-orange .state .shape {
+  fill: #fd7132;
+}
+
+#map .model-orange .state .icon_state {
+  fill: #6cb361;
+}
+
+#map .model-orange .state .label_icon_state {
+  fill: #fff;
+}
+
+#map .model-orange .state .label_state {
+  fill: #666;
+}
+
+#map .model-orange .state:hover .shape,
+#map .model-orange .state.hover .shape {
+  fill: #c93f04;
+}
+
+#map .model-orange .state:hover .icon_state,
+#map .model-orange .state.hover .icon_state {
+  fill: #10592f;
+}
+
+#map .model-darkgreen .state .shape {
+  fill: #366823;
+}
+
+#map .model-darkgreen .state .icon_state {
+  fill: #2779c6;
+}
+
+#map .model-darkgreen .state .label_icon_state {
+  fill: #fff;
+}
+
+#map .model-darkgreen .state .label_state {
+  fill: #666;
+}
+
+#map .model-darkgreen .state:hover .shape,
+#map .model-darkgreen .state.hover .shape {
+  fill: #4a8c31;
+}
+
+#map .model-darkgreen .state:hover .icon_state,
+#map .model-darkgreen .state.hover .icon_state {
+  fill: #5a95ce;
+}
+
+
