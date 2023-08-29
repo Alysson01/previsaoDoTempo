@@ -118,4 +118,10 @@ function cliqueNoBotao(){
 
     var selectElement = document.getElementById("estadoSelect");
     selectElement.selectedIndex = estadosArray.indexOf(mensagem)+1;
+    const ufSelecionado = estadoSelect.value;
+    if (ufSelecionado) {
+        carregarCidadesPorEstado(ufSelecionado)
+    } else {
+        cidadeSelect.innerHTML = '<option value="" class="option">Selecione um estado primeiro</option>';
+    }
 }
