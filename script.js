@@ -3,21 +3,6 @@
 const estadoSelect = document.getElementById('estadoSelect')
 const cidadeSelect = document.getElementById('cidadeSelect')
 
-// Função para preencher as opções de estados
-// Função para preencher as opções de estados em ordem alfabética
-async function carregarEstados() {
-    const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
-    const estados = await response.json()
-
-    estados.sort((a, b) => a.nome.localeCompare(b.nome)) // Ordena estados alfabeticamente
-
-    estados.forEach(estado => {
-        const optionElement = document.createElement('option')
-        optionElement.value = estado.sigla
-        optionElement.textContent = estado.nome
-        estadoSelect.appendChild(optionElement)
-    });
-}
 
 // Função para preencher as opções de cidades com base no estado selecionado
 async function carregarCidadesPorEstado(uf) {
@@ -33,8 +18,6 @@ async function carregarCidadesPorEstado(uf) {
     });
 }
 
-// Carrega os estados e adiciona um ouvinte de evento para mudanças no estado selecionado
-carregarEstados();
 estadoSelect.addEventListener('change', function () {
     const ufSelecionado = estadoSelect.value;
     if (ufSelecionado) {
@@ -123,4 +106,16 @@ function cliqueNoBotao(){
     console.log(cidade)
     buscar(cidade)
 
+}function allocateState(mensagem) {
+    const estadosArray = [
+        "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará",
+        "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão",
+        "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará",
+        "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro",
+        "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia",
+        "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"
+    ];
+
+    var selectElement = document.getElementById("estadoSelect");
+    selectElement.selectedIndex = estadosArray.indexOf(mensagem)+1;
 }
