@@ -1,5 +1,4 @@
 
-
 const estadoSelect = document.getElementById('estadoSelect')
 const cidadeSelect = document.getElementById('cidadeSelect')
 
@@ -18,6 +17,7 @@ async function carregarCidadesPorEstado(uf) {
     });
 }
 
+// Chama a função de carregar as cidades assim que o estado é selecionado
 estadoSelect.addEventListener('change', function () {
     const ufSelecionado = estadoSelect.value;
     if (ufSelecionado) {
@@ -40,13 +40,13 @@ estadoSelect.addEventListener('change', function () {
 });
 
 function mostrarDados(dados){
-    console.log(dados)
-    document.querySelector(".city").innerHTML = "Tempo em " + dados.name
-    document.querySelector(".temp").innerHTML =  Math.floor(dados.main.temp) + "°C"
-    document.querySelector(".humidity").innerHTML = "Umidade: " + dados.main.humidity + "%"
-    document.querySelector(".mensage").innerHTML = dados.weather[0].description
-    document.querySelector(".sunrise").innerHTML = "Nascer do Sol: " + converterTimestamp(dados.sys.sunrise)
-    document.querySelector(".sunset").innerHTML = "Por do Sol: " + converterTimestamp(dados.sys.sunset)
+    console.log(dados) 
+    document.querySelector(".city").innerHTML = "Tempo em " + dados.name // Insere nome da Cidade
+    document.querySelector(".temp").innerHTML =  Math.floor(dados.main.temp) + "°C" // Insere temperatura da Cidade
+    document.querySelector(".humidity").innerHTML = "Umidade: " + dados.main.humidity + "%" // Insere Umidade da Cidade
+    document.querySelector(".mensage").innerHTML = dados.weather[0].description // Insere descrição sobre o tempo da Cidade
+    document.querySelector(".sunrise").innerHTML = "Nascer do Sol: " + converterTimestamp(dados.sys.sunrise) // Insere horario do nascer do sol na cidade
+    document.querySelector(".sunset").innerHTML = "Por do Sol: " + converterTimestamp(dados.sys.sunset) // Insere horario do nascer do sol na cidade
     
     
     var smallBoxElement = document.querySelector(".smallbox") // Seleciona o elemento com a classe "smallbox"
@@ -82,11 +82,11 @@ function converterTimestamp(timestamp){
 
 const key = "e406f26cf5a7cfcb04b34d595476dff6" 
 
-async function buscarId(cidade) {
+/*async function buscarId(cidade) {
     let dados = await fetch("http://apiadvisor.climatempo.com.br/api/v1/locale/city?name=" + cidade +"&state=RJ&token=a9255f48ab3ba44a489b9418b0ee24d3").then(resposta => resposta.json())
 
     console.log(dados[0].id)
-}
+}*/
 
 async function buscar(cidade) {
     let dados = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + 
@@ -98,6 +98,8 @@ async function buscar(cidade) {
     )
     .then(resposta => resposta.json())
     
+    console.log(dados)
+
     mostrarDados(dados)
 }
 
@@ -105,8 +107,9 @@ function cliqueNoBotao(){
     const cidade = document.getElementById("cidadeSelect").value
     console.log(cidade)
     buscar(cidade)
+}
 
-}function allocateState(mensagem) {
+function allocateState(mensagem) {
     const estadosArray = [
         "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará",
         "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão",
@@ -118,10 +121,8 @@ function cliqueNoBotao(){
 
     var selectElement = document.getElementById("estadoSelect");
     selectElement.selectedIndex = estadosArray.indexOf(mensagem)+1;
+
     const ufSelecionado = estadoSelect.value;
-    if (ufSelecionado) {
-        carregarCidadesPorEstado(ufSelecionado)
-    } else {
-        cidadeSelect.innerHTML = '<option value="" class="option">Selecione um estado primeiro</option>';
-    }
+    carregarCidadesPorEstado(ufSelecionado)
+    
 }
