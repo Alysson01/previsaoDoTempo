@@ -66,21 +66,26 @@ function mostrarDados(dados){
     smallBoxElement.insertBefore(newImage, smallBoxElement.firstChild)
 }
 
+ // Converte timeStamp para data no JavaScript
 function converterTimestamp(timestamp){
-    const data = new Date(timestamp*1000)
-    const horas = data.getHours()
-    const minutos = data.getMinutes()
-    const segundos = data.getSeconds()
+    const data = new Date(timestamp*1000) // Converte timeStamp em segundos para milisegundos e depois para uma data
+    const horas = data.getHours() // Seleciona a hora da data
+    const minutos = data.getMinutes() // Seleciona o minuto da data
+    const segundos = data.getSeconds() // Seleciona a segundo da data
 
-    const horasFormatadas = horas < 10 ? `0${horas}` : horas
+    // Formata as informações de horario adicionando um zero a frente quando só se tem 1 digito
+    const horasFormatadas = horas < 10 ? `0${horas}` : horas 
     const minutosFormatados = minutos < 10 ? `0${minutos}` : minutos
-    const segundosFormatados = segundos < 10 ? `0${segundos}` : segundos
+    const segundosFormatados = segundos < 10 ? `0${segundos}` : segundos 
 
+    // Une e formata o horario 
     const horario = horasFormatadas+":"+minutosFormatados+":"+segundosFormatados
     return horario
 }
 
-const key = "e406f26cf5a7cfcb04b34d595476dff6" 
+const chave = require('./chave').default; // Chave da minha API
+console.log(chave)
+
 
 /*async function buscarId(cidade) {
     let dados = await fetch("http://apiadvisor.climatempo.com.br/api/v1/locale/city?name=" + cidade +"&state=RJ&token=a9255f48ab3ba44a489b9418b0ee24d3").then(resposta => resposta.json())
@@ -92,7 +97,7 @@ async function buscar(cidade) {
     let dados = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + 
     cidade + 
     "&appid=" + 
-    key + 
+    chave + 
     "&lang=pt_br" +
     "&units=metric"
     )
@@ -123,6 +128,5 @@ function allocateState(mensagem) {
     selectElement.selectedIndex = estadosArray.indexOf(mensagem)+1;
 
     const ufSelecionado = estadoSelect.value;
-    carregarCidadesPorEstado(ufSelecionado)
-    
+    carregarCidadesPorEstado(ufSelecionado)   
 }
