@@ -1,6 +1,6 @@
 // config.js
 const chave = {
-    apiKey: "e406f26cf5a7cfcb04b34d595476dff6",
+    apiKey: "44a37acc8c22b23ff70d4fe670d70f05",
   };
   
 export default chave;

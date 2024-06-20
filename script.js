@@ -97,12 +97,18 @@ async function buscar(cidade) {
     let dados = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + 
     cidade + 
     "&appid=" + 
-    chave + 
+    "e406f26cf5a7cfcb04b34d595476dff6" + 
     "&lang=pt_br" +
     "&units=metric"
     )
     .then(resposta => resposta.json())
-    
+    console.log(("https://api.openweathermap.org/data/2.5/weather?q=" + 
+        cidade + 
+        ",br&appid=" + 
+        "e406f26cf5a7cfcb04b34d595476dff6" + 
+        "&lang=pt_br" +
+        "&units=metric"
+        ))
     console.log(dados)
 
     mostrarDados(dados)
